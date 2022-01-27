@@ -1,6 +1,10 @@
 # blue-code-be-test
 This must enable to create a shorter version of a url and when ask for it should be redirected.
 
+### Heroku Path
+
+https://blue-code-test.herokuapp.com/
+
 ### Api Paths
 
 This project has the following paths:
