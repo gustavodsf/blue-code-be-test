@@ -1,4 +1,5 @@
-import uuid
+from threading import Thread
+from app.src.short_urls.tasks import threaded_task
 import datetime
 
 from app.src import db
@@ -19,6 +20,11 @@ def save_new_shorter(data):
         db.session.flush()
         db.session.refresh(shorterObj)
         setattr(shorterObj, 'short_url', converter.id_to_shortURL(shorterObj.id))
+
+        thread = Thread(target=threaded_task, args=(shorterObj, ))
+        thread.daemon = True
+        thread.start()
+
         db.session.commit()
     return shorterObj
 
@@ -29,7 +35,6 @@ def get_a_url(short_url):
     shorterObj = ShortUrls.query.filter_by(short_url=short_url).first()
     shorterObj.number_access += 1
     setattr(shorterObj, 'number_access', shorterObj.number_access + 1)
-    db.session.add(shorterObj)
     db.session.commit()
     db.session.flush()
     return shorterObj

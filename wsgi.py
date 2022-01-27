@@ -5,7 +5,7 @@ from flask.cli import FlaskGroup
 from flask_migrate import Migrate
 
 from app.src import create_app, db  
-from app import blueprint, make_celery
+from app import blueprint
 from app.src.short_urls import entity
 
 

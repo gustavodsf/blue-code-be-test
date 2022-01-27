@@ -7,7 +7,6 @@ from app.src.short_urls.service import save_new_shorter, get_most_frequent_url, 
 api = ShorterURLDto.api
 _shorterURL = ShorterURLDto.shorterURL
 
-
 @api.route('/')
 class ShorterURLList(Resource):
     @api.doc('list_of_registered_users')
