@@ -26,3 +26,4 @@ SQLAlchemy
 Werkzeug==0.16.1
 flask_restplus
 redis
+gunicorn
