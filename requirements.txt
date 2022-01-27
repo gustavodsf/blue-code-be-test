@@ -23,4 +23,6 @@ pytz
 selenium
 six
 SQLAlchemy
-Werkzeug
+Werkzeug==0.16.1
+flask_restplus
+redis

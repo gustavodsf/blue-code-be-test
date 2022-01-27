@@ -1,11 +1,18 @@
 import os
 import unittest
-
+import time
 from flask.cli import FlaskGroup
 from flask_migrate import Migrate
-from app.src import create_app, db  
 
-app = create_app(os.getenv('BLUE_CODE_ENV') or 'dev')
+from app.src import create_app, db  
+from app import blueprint, make_celery
+from app.src.short_urls import entity
+
+
+app = create_app('dev')
+app.register_blueprint(blueprint)
+
+
 migrate = Migrate(app, db)
 app.app_context().push()
 
@@ -21,4 +28,5 @@ def cli_test():
     return 1
 
 if __name__ == '__main__':
-    cli()
+    # cli()
+    app.run()
